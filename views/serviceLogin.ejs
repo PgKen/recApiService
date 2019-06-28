@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+    <title><%= title %> </title>
+</head>
+
+
+<body>
+    <div class="ad-mainContent">
+        <div class="ad-mainTitle"><%= title %> </div>
+        <div class="ad-mainBox">
+            <div class="ad-mainArticle">
+                <div class="ad-boxArticle centerSty">
+                    <div class="ad-form marAuto" id="ad-form">
+                        <form action="/service-chkLogin" method="post">
+                            <ul>
+                                <li>
+                                    <label for="">User</label>
+                                    <input id="old" type="hidden" name="old" value="">
+                                    <input id="user" type="text" name="user" value="" onclick="keyUser()">
+                                    <span>&nbsp;</span>
+                                </li>
+                                <li>
+                                    <label for="">Password</label>
+                                    <input id="password" type="password" name="password" value="" onclick="keyPass()">
+                                    <span id="viewOn">
+                                        <i class="material-icons" onclick="viewvis()">
+                                            visibility
+                                        </i>
+
+                                    </span>
+                                    <span id="viewOff">
+                                        <i class="material-icons" onclick="viewvisOff()">
+                                            visibility_off
+                                        </i>
+                                    </span>
+                                </li>
+                                <li><button type="submit">Login</button></li>
+                            </ul>
+                        </form>
+                    </div>
+                    <div class="kbLogin" id="kbLogin">
+                        <ul>
+                            <li onclick="clearKeyboard()">
+                                <i class="material-icons">
+                                    home
+                                </i>
+                            </li>
+                        </ul>
+                        <ul>
+                            <% for( let i = 1; i < 10; i++ ) { %>
+                            <li onclick="userClick(<%= i %>)"><%= i%></li>
+                            <% } %>
+                            <li onclick="userClick(0)">0</li>
+                            <li onclick="delClick()" style="background-color: #FF5722;">Del</li>
+                            <li onclick="delAllClick()" style="background-color: red;">Clear</li>
+                        </ul>
+                        <!-- <ul>
+                            <li onclick="clearKeyboard()">
+                                Ok
+                            </li>
+                        </ul> -->
+                    </div>
+                    <div class="kbLogin" id="kbLoginPass">
+                        <ul>
+                            <li onclick="clearKeyboard()">
+                                <i class="material-icons">
+                                    home
+                                </i>
+                            </li>
+                        </ul>
+                        <ul>
+                            <% for( let i = 1; i < 10; i++ ) { %>
+                            <li onclick="userClickPass(<%= i %>)"><%= i%></li>
+                            <% } %>
+                            <li onclick="userClickPass(0)">0</li>
+                            <li onclick="delClickPass()" style="background-color: #FF5722;">Del</li>
+                            <li onclick="delAllClickPass()" style="background-color: red;">Clear</li>
+                        </ul>
+                        <!-- <ul>
+                            <li onclick="clearKeyboard()">
+                                Ok
+                            </li>
+                        </ul> -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    //Cookies.set('test', '1234')
+    let oldVar = ""
+    let newVar = ""
+    let oldVarPass = ""
+    let newVarPass = ""
+
+    function keyUser() {
+        document.getElementById('ad-form').style.margin = "0 auto"
+        document.getElementById('kbLogin').style.display = "flex"
+        // Close Keyboard Password
+        document.getElementById('kbLoginPass').style.display = "none"
+    }
+
+    function clearKeyboard() {
+        document.getElementById('ad-form').style.margin = "auto"
+        document.getElementById('kbLogin').style.display = "none"
+        document.getElementById('kbLoginPass').style.display = "none"
+    }
+
+    function keyPass() {
+        document.getElementById('ad-form').style.margin = "0 auto"
+        document.getElementById('kbLoginPass').style.display = "flex"
+        // Close Keyboard Username
+        document.getElementById('kbLogin').style.display = "none"
+    }
+
+
+    function userClick(i) {
+        let valClick = i
+
+        newVar = oldVar + valClick
+        oldVar = newVar
+        console.log("newVar = " + newVar)
+        document.getElementById('old').value = oldVar
+        document.getElementById('user').value = newVar
+    }
+
+    function userClickPass(i) {
+        let valClick = i
+
+        newVarPass = oldVarPass + valClick
+        oldVarPass = newVarPass
+        console.log("newVar = " + newVarPass)
+        //document.getElementById('oldpass').value = oldVarPass
+        document.getElementById('password').value = newVarPass
+    }
+
+    function delClick() {
+        console.log('del')
+        let getOld = document.getElementById('old').value
+        getOld = getOld.substring(0, getOld.length - 1);
+        oldVar = getOld
+        document.getElementById('user').value = oldVar
+        document.getElementById('old').value = oldVar
+        if (getOld.length == 0) {
+            document.getElementById('user').value = ""
+        }
+    }
+
+    function delClickPass() {
+        console.log('delpass')
+        let getOldPass = document.getElementById('password').value
+        getOldPass = getOldPass.substring(0, getOldPass.length - 1);
+        oldVarPass = getOldPass
+        document.getElementById('password').value = oldVarPass
+        //document.getElementById('old').value = oldVar
+        if (getOldPass.length == 0) {
+            document.getElementById('password').value = ""
+        }
+    }
+
+    function delAllClick() {
+        oldVar = ""
+        document.getElementById('user').value = ""
+    }
+
+    function delAllClickPass() {
+        oldVarPass = ""
+        document.getElementById('password').value = ""
+    }
+
+    function viewvis() {
+        console.log("test")
+        document.getElementById('viewOff').style.display = "flex"
+        document.getElementById('viewOn').style.display = "none"
+        document.getElementById('password').type = "text"
+
+    }
+
+    function viewvisOff() {
+        document.getElementById('viewOff').style.display = "none"
+        document.getElementById('viewOn').style.display = "flex"
+        document.getElementById('password').type = "password"
+    }
+</script>
+
+</html>

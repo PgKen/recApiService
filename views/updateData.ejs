@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <title><%= title %></title>
+</head>
+
+<body>
+    <div class="ad-mainContent">
+        <div class="rec-mainTitle">
+            <label for=""><%= title %> </label>
+            <span>
+                <i onclick="linkLogout()" class="material-icons">exit_to_app</i>
+            </span>
+        </div>
+        <div class="boxAlUpdate">
+            <%= subTitle %>
+        </div>
+    </div>
+</body>
+<script>
+    var socket = io();
+
+
+    let x = 0
+    setInterval(() => {
+        loadData()
+    }, 8000);
+
+    function loadData() {
+        //getUrl = "http://localhost:4400/1a2b3c4d5e6d/dataJob"
+        getUrl = "http://172.16.1.188:4400/1a2b3c4d5e6d/dataJob"
+        //getUrl = "http://taladsrimuang.com:4400/1a2b3c4d5e6d/dataJob"
+        //x = x + 1
+        //document.getElementById('showService').innerHTML = x
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: getUrl,
+                data: "data",
+                dataType: "json",
+                success: function (res) {
+                    //console.log(res);
+                    if (res != "") {
+                        console.log("have");
+                        //document.getElementById('showService').innerHTML = res[0].detail_job
+                        socket.emit('serviceAl', "have");
+                        location.href = "/updateSuccess"
+                        // return false;
+                    } else {
+                        socket.emit('serviceAl', "not");
+                        console.log("not have");
+                        location.href = "/serviceProject"
+                        //document.getElementById('showService').innerHTML = ""
+                    }
+                }
+            });
+        });
+
+    }
+
+    /*setTimeout(() => {
+
+    }, 10000);*/
+</script>
+
+</html>

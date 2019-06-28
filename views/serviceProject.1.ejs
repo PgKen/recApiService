@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/styleWeb.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="recService">
+        <div class="al-box">
+            <div id="showService">0</div>
+        </div>
+
+        <div class="recLogin">
+            <div class="al-form">
+                <form action="/rec-login" method="post">
+                    <ul>
+                        <li>
+                            <label for="">User</label>
+                            <input type="text" id="user" name="user">
+                            <span>&nbsp;</span>
+                        </li>
+                        <li>
+                            <label for="">Password</label>
+                            <input type="password" id="password" name="password">
+                            <span id="viewOn">
+                                <i class="material-icons" onclick="viewvis()">
+                                    visibility
+                                </i>
+
+                            </span>
+                            <span id="viewOff">
+                                <i class="material-icons" onclick="viewvisOff()">
+                                    visibility_off
+                                </i>
+                            </span>
+
+                        </li>
+                        <li>
+                            <button type="submit">Login</button>
+                        </li>
+                    </ul>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    let x = 0
+    setInterval(() => {
+        loadData()
+    }, 10000);
+
+    function loadData() {
+        x = x + 1
+        document.getElementById('showService').innerHTML = x
+        $(document).ready(function () {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:4400/1a2b3c4d5e6d/dataJob",
+                data: "data",
+                dataType: "json",
+                success: function (res) {
+                    console.log(res);
+                    document.getElementById('showService').innerHTML = res[0].detail_job
+
+                }
+            });
+        });
+
+    }
+
+    function viewvis() {
+        console.log("test")
+        document.getElementById('viewOff').style.display = "flex"
+        document.getElementById('viewOn').style.display = "none"
+        document.getElementById('password').type = "text"
+
+    }
+
+    function viewvisOff() {
+        document.getElementById('viewOff').style.display = "none"
+        document.getElementById('viewOn').style.display = "flex"
+        document.getElementById('password').type = "password"
+    }
+</script>
+
+</html>

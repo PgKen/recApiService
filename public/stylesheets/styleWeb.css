@@ -1,0 +1,57 @@
+body .recService {
+  display: flex;
+  border: 1px solid #CCC;
+  flex-direction: column; }
+  body .recService .al-box {
+    display: flex;
+    /* padding: 50px 50px; */
+    border: 4px solid #F44336;
+    height: 150px;
+    padding: 5px;
+    background-color: #FFEB3B;
+    font-size: 18px; }
+  body .recService .al-form {
+    width: 450px;
+    margin: 15px auto;
+    border: 1px solid #CCC;
+    padding: 20px;
+    background-color: #dde9cc; }
+    body .recService .al-form form ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column; }
+      body .recService .al-form form ul li {
+        display: flex;
+        flex-direction: row;
+        margin: 10px 0; }
+        body .recService .al-form form ul li label {
+          flex: 2;
+          align-items: center;
+          display: flex; }
+        body .recService .al-form form ul li input {
+          flex: 4;
+          font-size: 18px;
+          padding: 2px;
+          text-align: center; }
+        body .recService .al-form form ul li span {
+          flex: 1;
+          justify-content: center;
+          display: flex;
+          align-items: center; }
+          body .recService .al-form form ul li span i {
+            cursor: pointer; }
+        body .recService .al-form form ul li span#viewOff {
+          display: none; }
+        body .recService .al-form form ul li button {
+          width: 150px;
+          display: flex;
+          margin: 0 auto;
+          justify-content: center;
+          padding: 5px;
+          font-size: 18px; }
+  body .recService .recLogin {
+    display: flex; }
+
+/*# sourceMappingURL=styleWeb.css.map */

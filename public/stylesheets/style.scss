@@ -1,0 +1,694 @@
+$darkGreen : #004D25;
+$green : #00833F;
+$lightGreen: #DDE9CC;
+$lighterYellow:#C59311;
+$darkYellow: #8D6807;
+$notBack: #191919;
+$meGrey:#4F4F4F;
+$darkGrey: #666666;
+$lightGrey: #F6F6F6;
+$lighterGrey: #E5E5E5;
+$grey:#C4C4C4;
+$white: #FFFFFF;
+/* label*/
+$red: #DA1414;
+$orenge:#F2940E;
+
+@import url('https://fonts.googleapis.com/css?family=Kanit&display=swap');
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Kanit',
+        sans-serif;
+    display: flex;
+
+    .ad-mainContent {
+        //border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        width: 1400px;
+        margin: 0 auto;
+
+        .rec-mainTitle {
+            //border: 1px solid #CCC;
+            display: flex;
+            justify-content: center;
+            background-color: #004D25;
+            color: #FFFFFF;
+            font-size: 26px;
+            padding: 2px;
+            //color: red;
+            flex-direction: row;
+
+            label {
+                flex: 15;
+                justify-content: center;
+                display: flex;
+            }
+
+            span {
+                flex: 1;
+                justify-content: center;
+                display: flex;
+                align-items: center;
+
+                i {
+                    font-size: 35px;
+                    color: darkorange;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: seashell;
+                    }
+                }
+            }
+        }
+
+        .boxAlUpdate {
+            /* border: 1px solid; */
+            margin: 20% auto;
+            padding: 50px;
+            font-size: 26px;
+            background-color: #FFC107;
+            color: #004d25;
+        }
+
+        .ad-mainTitle {
+            border: 1px solid #CCC;
+            display: flex;
+            justify-content: flex-start;
+            background-color: #CDDC39;
+            color: #FFFFFF;
+            font-size: 15px;
+            padding: 5px;
+            color: black;
+            height: 100px;
+        }
+
+        .ad-mainBox {
+            //border: 1px solid blue;
+            display: flex;
+            flex-direction: row;
+            //margin: 15px 0 0 0;
+
+            ul.ad-menu {
+                display: flex;
+                flex-direction: column;
+                padding: 0;
+                margin: 0;
+                flex: 1;
+
+                li {
+                    border-bottom: 1px solid #FFFFFF;
+                    background-color: #DDE9CC;
+                    padding: 10px;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: $darkGreen;
+                        color: white;
+                    }
+
+                    i {
+
+                        // flex: 1;
+                    }
+
+                    span {
+                        margin: 0 0 0 10px;
+                        flex: 4;
+                    }
+                }
+            }
+
+            .ad-mainArticle {
+                display: flex;
+                flex: 4;
+                flex-direction: column;
+                margin: 0 0 0 15px;
+
+                .ad-titleArticle {
+                    display: flex;
+                    justify-content: center;
+                    font-size: 20px;
+                    background-color: $darkGrey;
+                    color: white;
+                }
+
+                .ad-alretSuccess {
+                    background-color: #F2940E;
+                    color: #004D25;
+                    display: flex;
+                    justify-content: center;
+                    padding: 30px;
+                    font-size: 40px;
+                    margin: 50px 0 0 0;
+                    width: 80%;
+                    margin: 50px auto 0px;
+                }
+
+                .ad-gifLoading {
+                    display: flex;
+                    justify-content: center;
+                    width: 80%;
+                    margin: 0 auto;
+                }
+
+                .ad-gitSucess {
+                    display: flex;
+                    justify-content: center;
+                    width: 80%;
+                    margin: 20px auto;
+
+                    img {
+                        width: 200px;
+                    }
+                }
+
+                .ad-home {
+                    border: 4px solid #004d25;
+                    display: flex;
+                    justify-content: center;
+                    margin: 35px auto;
+                    padding: 50px;
+                    background-color: #dde9cc;
+                    box-shadow: inset 4px 8px 13px #403e3e;
+
+                    i {
+                        font-size: 250px;
+                        /*background-color: #4CAF50;
+                        */
+                        /*text-shadow: 1px 8px 7px black;
+                        */
+                        text-shadow: 16px 4px 3px #5c5c5c;
+                        color: darkgreen;
+                        animation: ani 5s infinite;
+                        -webkit-animation: ani 5s infinite;
+                    }
+
+                    @keyframes ani {
+                        0% {
+                            transform: rotate(0deg);
+                            -webkit-transform: rotate(0deg);
+                            -moz-transform: rotate(0deg);
+                            -ms-transform: rotate(0deg);
+                            -o-transform: rotate(0deg);
+                        }
+
+                        50% {
+                            transform: rotate(120deg);
+                            -webkit-transform: rotate(120deg);
+                            -moz-transform: rotate(120deg);
+                            -ms-transform: rotate(120deg);
+                            -o-transform: rotate(120deg);
+                        }
+                    }
+
+                    //}
+                }
+
+
+
+
+                .ad-boxArticle {
+                    display: flex;
+                    // border: 1px solid red;
+                    flex-direction: column;
+                    background: $lightGrey;
+
+                    .ad-form-job {
+                        display: flex;
+                        // border: 1px solid blue;
+
+                        form {
+                            display: flex;
+                            flex: 1;
+
+                            ul {
+                                display: flex;
+                                flex-direction: column;
+                                padding: 0;
+                                margin: 0;
+                                list-style: none;
+                                width: 80%;
+                                margin: 0 auto;
+                                //border: 1px solid green;
+                                margin: 15px auto;
+                                padding: 15px;
+                                background-color: #dde9cc;
+
+                                li {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin: 5px;
+
+                                    label {
+                                        flex: 1;
+                                    }
+
+                                    textarea {
+                                        flex: 1;
+                                    }
+
+                                    input {
+                                        flex: 1;
+                                        font-size: 18px;
+                                        padding: 5px;
+                                    }
+
+                                    span {
+                                        flex: 1;
+                                    }
+
+                                    span.data {
+                                        flex: 1;
+                                        color: #009688;
+                                    }
+
+                                    button {
+                                        margin: 0 auto;
+                                        width: 200px;
+                                        padding: 5px 10px;
+                                        font-size: 18px;
+                                        display: flex;
+                                        flex-direction: row;
+                                        justify-content: center;
+                                        align-items: center;
+                                        font-family: 'Kanit',
+                                            sans-serif;
+
+                                        i {
+                                            flex: 1;
+                                            font-size: 24px;
+                                        }
+
+                                        span {
+                                            flex: 3;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+
+                    }
+
+                    .ad-form {
+                        width: 450px;
+                        margin: 15px auto;
+                        border: 1px solid #CCC;
+                        padding: 20px;
+                        background-color: #dde9cc;
+
+                        form {
+                            ul {
+                                padding: 0;
+                                margin: 0;
+                                list-style: none;
+                                display: flex;
+                                flex-direction: column;
+
+                                li {
+                                    display: flex;
+                                    flex-direction: row;
+                                    margin: 10px 0;
+
+                                    label {
+                                        flex: 2;
+                                        align-items: center;
+                                        display: flex;
+                                    }
+
+                                    input {
+                                        flex: 4;
+                                        font-size: 18px;
+                                        padding: 2px;
+                                        text-align: center;
+                                    }
+
+                                    span {
+                                        flex: 1;
+                                        justify-content: center;
+                                        display: flex;
+
+                                        i {
+                                            cursor: pointer;
+                                        }
+                                    }
+
+                                    span#viewOff {
+                                        display: none;
+                                    }
+
+                                    button {
+                                        width: 150px;
+                                        display: flex;
+                                        margin: 0 auto;
+                                        justify-content: center;
+                                        padding: 5px;
+                                        font-size: 18px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .boxExec {
+                        display: flex;
+                        flex-direction: row;
+                        padding: 0 15px 0 0;
+                        justify-content: flex-end;
+                        margin: 35px 0 0 0;
+
+                        span:nth-child(2) {
+                            i {
+                                color: red;
+                            }
+                        }
+
+                        span {
+                            margin: 0 0 0 10px;
+                            flex-basis: 50px;
+
+
+
+                            i {
+
+                                font-size: 50px;
+                                color: #FF9800;
+                                //border: 1px solid;
+                                background-color: #004d25;
+                                padding: 2px;
+                            }
+
+                        }
+
+
+                    }
+
+                    .marAuto {
+                        margin: auto;
+                    }
+
+                    .kbLogin {
+                        display: flex;
+                        flex-direction: row;
+                        //background-color: #161a18;
+                        margin: 15px 60px;
+                        padding: 8px;
+                        justify-content: center;
+
+                        ul:nth-child(1) {
+                            flex-basis: 180px;
+                            margin: 10px;
+                            padding: 0;
+                            display: flex;
+                            justify-content: flex-end;
+                            flex-direction: column;
+
+                            li {
+                                flex-basis: 80px;
+                                //border: 1px solid blue;
+                                display: flex;
+                                /* justify-content: center; */
+                                align-items: center;
+                                margin: 0 0 6px 0;
+
+                                i {
+                                    font-size: 50px;
+                                }
+                            }
+
+                        }
+
+                        ul:nth-child(3) {
+                            flex-basis: 180px;
+                            margin: 10px;
+                            padding: 0;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: flex-end;
+
+                            li {
+                                flex-basis: 80px;
+                                //border: 1px solid blue;
+                                display: flex;
+                                /* justify-content: center; */
+                                align-items: center;
+                                margin: 0 0 6px 0;
+                            }
+                        }
+
+
+                        ul {
+                            padding: 0;
+                            //margin: 0px auto;
+                            list-style: none;
+                            //border: 1px solid green;
+                            display: flex;
+                            flex-direction: row;
+                            flex-basis: 480px;
+                            flex-wrap: wrap;
+                            justify-content: space-between;
+
+                            li {
+                                display: flex;
+                                flex-basis: 150px;
+                                /* border: 1px solid blue; */
+                                font-size: 20px;
+                                margin: 8px 0 0 0;
+                                justify-content: center;
+                                background-color: #009688;
+                            }
+
+                        }
+                    }
+
+                    .kbLoginPass {
+                        display: flex;
+                        // border: 1px solid red;
+                        flex-direction: row;
+
+                        ul {
+                            flex: 1;
+                            display: flex;
+                            flex-direction: row;
+                            padding: 0px;
+                            margin: 0;
+                            list-style: none;
+                            flex-wrap: wrap;
+                            // background-color: #607D8B;
+                            background-color: #a6c0cc;
+                            justify-content: center;
+
+                            li {
+                                display: flex;
+                                flex-basis: 47px;
+                                border: 1px solid #004d25;
+                                margin: 2px;
+                                padding: 5px 0 5px 0;
+                                justify-content: center;
+                                background-color: #009688;
+                                font-size: 20px;
+                                cursor: pointer;
+
+                                &:hover {
+                                    color: #009688;
+                                    background-color: #191919;
+
+                                }
+                            }
+                        }
+                    }
+
+                    #kbLogin {
+                        display: none;
+                    }
+
+                    #kbLoginPass {
+                        display: none;
+                    }
+
+                }
+
+                .centerSty {
+                    //height: -webkit-fill-available;
+                    height: 800px;
+                }
+            }
+
+        }
+
+        ul.boxDetailService_1 {
+            display: flex;
+            //border: 1px solid red;
+            flex-direction: column;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+
+            li.detailLabel {
+                margin-top: 10px;
+                background-color: #929999;
+                border-bottom: 1px solid #666;
+                padding: 4px;
+
+                span {
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+
+            li.detailText {
+                padding: 15px 0 15px 0;
+                background-color: #FFEB3B;
+            }
+
+            li.user {
+                background-color: #d9dfdf;
+
+
+                span.data {
+                    // display: flex;
+                    // justify-content: center;
+                    background-color: #4CAF50;
+                }
+
+                span.checkbox {
+                    flex: 0.2;
+                }
+            }
+
+
+
+            li {
+                display: flex;
+                flex-direction: row;
+                border-bottom: 1px solid #CCC;
+
+                span {
+
+                    flex: 1;
+                }
+            }
+
+            li.buttonService {
+                margin: 25px;
+                justify-content: center;
+                border: none;
+
+                button {
+                    background-color: #009688;
+                    font-family: 'Kanit',
+                        sans-serif;
+                    //font-size: 26px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding: 8px;
+
+                    i {
+                        flex: 0.2;
+                        color: greenyellow;
+                    }
+
+                    span {
+                        flex: 1;
+                        font-size: 18px;
+                        margin: 0 0 0 6px;
+                        //color: greenyellow;
+
+                    }
+                }
+            }
+
+        }
+
+        ul.boxListService {
+            display: flex;
+            //border: 1px solid red;
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            flex-direction: column;
+
+            li:nth-child(1) {
+                background-color: #9E9E9E;
+            }
+
+            li {
+                display: flex;
+                flex-direction: row;
+                border-bottom: 1px solid #CCC;
+
+                span:nth-child(2) {
+                    flex: 4;
+                }
+
+                span {
+                    display: flex;
+                    justify-content: center;
+                    flex: 1;
+                    border-left: 1px solid #cCC;
+                    align-items: center;
+
+                    button {
+                        font-family: 'Kanit',
+                            sans-serif;
+                        flex: 1;
+                        font-size: 16px;
+                        margin: 6px;
+                        background-color: #009688;
+                        display: flex;
+                        justify-content: center;
+
+                        i {
+                            color: greenyellow;
+                        }
+                    }
+                }
+
+
+
+            }
+        }
+
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    body {
+        .ad-mainContent {
+            width: 100%;
+
+            .ad-mainBox {
+                .ad-mainArticle {
+                    margin: 0 0 0 0;
+
+                    .ad-boxArticle {
+                        height: 0px;
+                        //border: 1px solid red;
+
+                        .ad-form {
+                            margin: auto;
+
+                            form {
+                                ul {
+                                    li {
+                                        input {
+                                            height: 30px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

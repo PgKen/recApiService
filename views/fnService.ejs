@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+    <title><%= title %> </title>
+</head>
+
+<body>
+
+    <div class="ad-mainContent">
+        <div class="ad-mainTitle"><%= title %> </div>
+        <div class="ad-mainBox">
+            <div class="ad-mainArticle">
+                <div class="ad-titleArticle"><%= subTitle %></div>
+                <div class="ad-boxArticle">
+                    <div class="ad-form-job">
+                        <form action="/sendJob" method="POST">
+                        <input type="hidden" value="<%= dataIdUser%>">
+                            <ul>
+                                <li>
+                                    <label for="">รายละเอียดของปัญหา</label>
+
+                                </li>
+                                <li>
+                                    <textarea name="detail" id="" cols="30" rows="8"></textarea>
+                                </li>
+                                <li>
+                                    <span style="flex:0.5;">ผู้แจ้ง</span>
+                                    <span class='data' style="flex:2;"><%= dataName %>&nbsp;<%= dataSurname %> </span>
+                                    <span style="flex:0.5;">วันที่</span>
+                                    <span class='data'><%= moment(dateNow).format('DD-MM-YYYY') %></span>
+                                    <span style="flex:0.5;">เวลา</span>
+                                    <span class='data'><%= moment(dateNow).format('HH:mm') %>&nbsp;น.</span>
+                                    <span></span>
+                                    <span style="flex:0.5;">ฝ่าย</span>
+                                    <span class='data'><%= dataNameDp %> </span>
+                                    <input type="hidden" name="date"
+                                        value="<%= moment(dateNow).format('DD-MM-YYYY') %>">
+                                    <input type="hidden" name="time" value="<%= moment(dateNow).format('HH:mm') %>">
+                                    <input type="hidden" name="userId">
+                                </li>
+                                <li style="width:50%;">
+                                    <label for="" style="flex:0.5;">เบอร์โทร</label>
+                                    <input type="text" name="tel" id="">
+                                </li>
+                                <li>&nbsp;</li>
+                                <li>
+
+                                    <button type="submit">
+                                        <i class="material-icons">
+                                            send
+                                        </i>
+                                        <span>
+                                            ส่งเรื่องแจ้งซ่อม
+                                        </span>
+                                    </button>
+                                </li>
+                            </ul>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    /*
+    let xx = Cookies.get('test')
+    console.log('xx = ' + xx)
+    */
+</script>
+
+</html>

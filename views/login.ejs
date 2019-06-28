@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+    <title><%= title %> </title>
+</head>
+
+
+<body>
+    <div class="ad-mainContent">
+        <div class="ad-mainTitle"><%= title %> </div>
+        <div class="ad-mainBox">
+            <div class="ad-mainArticle">
+                <div class="ad-titleArticle"><%= subTitle %> </div>
+                <div class="ad-boxArticle">
+                    <div class="ad-form">
+                        <form action="/adminLogin" method="post">
+                            <ul>
+                                <li>
+                                    <label for="">User</label>
+                                    <input type="text" name="name">
+                                </li>
+                                <li>
+                                    <label for="">Password</label>
+                                    <input type="password" name="password">
+                                </li>
+                                <li><button>Login</button></li>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    //Cookies.set('test', '1234')
+</script>
+
+</html>

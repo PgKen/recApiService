@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
+    <title><%= title %> </title>
+</head>
+
+<body>
+
+    <div class="ad-mainContent">
+        <div class="ad-mainTitle"><%= title %> </div>
+        <div class="ad-mainBox">
+            <% include ./menu %>
+            <div class="ad-mainArticle">
+                <div class="ad-titleArticle"><%= subTitle %></div>
+                <div class="ad-alretSuccess">กำลังบันทึกเรื่องแจ้ง</div>
+                <div class="ad-gifLoading">
+                    <img src="/images/loading.gif" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    /*
+    let xx = Cookies.get('test')
+    console.log('xx = ' + xx)
+    */
+
+    setTimeout(() => {
+        location.href = '/jobSuccess2'
+    }, 1500);
+</script>
+
+</html>

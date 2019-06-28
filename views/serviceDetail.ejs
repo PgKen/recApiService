@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <title><%= title %></title>
+</head>
+
+<body>
+    <div class="ad-mainContent">
+        <div class="rec-mainTitle">
+            <label for=""><%= title %> </label>
+            <span>
+                <i onclick="linkLogout()" class="material-icons">exit_to_app</i>
+            </span>
+        </div>
+        <div class="ad-mainBox">
+            <div class="ad-mainArticle">
+                <div class="ad-titleArticle"><%= subTitle %></div>
+            </div>
+
+        </div>
+
+        <ul class="boxDetailService_1">
+            <form action="/submitRecService" method="post">
+                <li class="detailLabel">
+                    <span>รายละเอียดของปัญหา</span>
+                </li>
+                <li class="detailText">
+                    <span>
+                        <%= dataJob[0].detail_job %>
+                    </span>
+                </li>
+                <li class="user">
+
+                    <span>ผู้แจ้ง</span>
+                    <span class="data"><%= dataUser[0].name %> </span>
+                    <span class="data"><%= dataUser[0].surname %></span>
+                    <span>วันที่</span>
+                    <span class="data"><%= moment(dataJob[0].date_job).format("DD-MM-YYYY") %></span>
+                    <span>เวลา</span>
+                    <span class="data"><%= dataJob[0].time_job %></span>
+                </li>
+                <li class="user">
+                    <span>ฝ่าย</span>
+                    <span class="data"><%= dataUser[0].namedp %></span>
+                    <span class="data"></span>
+                    <span>เบอร์โทร</span>
+                    <span class="data"><%= dataJob[0].tel_job %></span>
+                    <span></span>
+                    <span></span>
+                </li>
+                <li class="detailLabel">
+                    <span>ความเห็นของเจ้าหน้าที่</span>
+                </li>
+                <li class="user">
+                    <span class="checkbox">
+                        <input type="radio" name="chkService" value="1" checked>
+                    </span>
+                    <span>ดำเนินการซ่อมได้ทันทีภายในวันนี้</span>
+                </li>
+                <li class="user">
+                    <span class="checkbox">
+                        <input type="radio" name="chkService" value="2">
+                    </span>
+                    <span>ยังดำเนินการซ่อมไม่ได้ สามารถดำเนินการได้เมื่อ</span>
+                    <span id="chkServiceDetail"></span>
+                </li>
+                <li class="user" id="chkServiceDetail2">
+
+                </li>
+                <li class="user">
+
+                    <span>ผู้รับแจ้ง</span>
+                    <span class="data"><%= dataUserLogin[0].name %> </span>
+
+                    <span class="data"><%= dataUserLogin[0].surname %></span>
+                    <span>วันที่</span>
+                    <span class="data"><%= moment(dateNow).format("DD-MM-YYYY") %></span>
+                    <span>เวลา</span>
+                    <span class="data"><%= moment(timeNow).format("LT") %></span>
+                </li>
+                <li class="buttonService">
+                    <button type="submit"><i class="material-icons">
+                            build
+                        </i>
+                        <span>
+                            บันทึกรับแจ้ง
+                        </span>
+                    </button>
+                </li>
+                <input type="hidden" value="1" name="valService">
+                <input type="hidden" value="<%= dataUserLogin[0].id_pro %>" name="valManId">
+                <input type="hidden" value="<%= dataJob[0].jobId %>" name="valJobId">
+            </form>
+        </ul>
+    </div>
+</body>
+
+<script>
+    let th = ["cls", "", "", "ภ", "ถ", "ุ", "ึ", "ค", "ต", "จ", "ข", "ช",
+        "Backspace", "", "ๆ", "ไ", "ำ", "พ", "ะ", "ั", "ี", "ร", "น", "ย", "บ", "ล", "ฃ",
+        "", "ฟ", "ห", "ก", "ด", "เ", "้", "่", "า", "ส", "ว", "ง", "Enter",
+        "Shift", "ผ", "ป", "แ", "อ", "ิ", "ื", "ท", "ม", "ใ", "ฝ", "Shift",
+        "space", "cls", "1", "2", "3", "4", "ู", "฿", "5", "6", "7", "8", "9",
+        "Backspace", "", "0", "\"", "ฎ", "ฑ", "ธ", "ํ", "๊", "ณ", "ฯ", "ญ", "ฐ", "\,", "ฅ",
+        "", "ฤ", "ฆ", "ฏ", "โ", "ฌ", "็", "๋", "ษ", "ศ", "ซ", ".", "Enter",
+        "Shift", "(", ")", "ฉ", "ฮ", "ฺ", "์", "?", "ฒ", "ฬ", "ฦ", "Shift",
+        "space"
+    ]
+
+
+    function linkLogout() {
+        location.href = "/logout"
+    }
+
+    function detailService(id) {
+        console.log("idService = " + id)
+        location.href = "/serviceDetail/" + id
+    }
+
+    txt = "<input type='date'>"
+    txt2 =
+        "<span style='flex:0.5;'>สาเหตุที่ยังซ่อมไม่ได้ </span><span><input style='width:98%;'type='text'></span></<span>"
+
+    $(document).ready(function () {
+        $("input[type='radio']").click(function () {
+            var radioValue = $("input[name='chkService']:checked").val();
+            if (radioValue == 2) {
+                document.getElementById('chkServiceDetail').innerHTML = txt
+                document.getElementById('chkServiceDetail2').innerHTML = txt2
+                //alert("Your are a - " + radioValue);
+            } else {
+
+                document.getElementById('chkServiceDetail').innerHTML = ""
+                document.getElementById('chkServiceDetail2').innerHTML = ""
+            }
+        });
+
+    });
+</script>
+
+</html>

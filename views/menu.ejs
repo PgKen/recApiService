@@ -1,0 +1,54 @@
+<ul class="ad-menu">
+    <li onclick="linkLocation(1)">
+        <i class="material-icons">
+            home
+        </i>
+        <span>หน้าแรก</span>
+    </li>
+    <li onclick="linkLocation(2)">
+        <i class="material-icons">
+            assignment_ind
+        </i>
+        <span>ทะเบียนผู้ใช้งาน</span>
+    </li>
+    <li onclick="linkLocation(3)">
+        <i class="material-icons">
+            build
+        </i>
+        <span>แจ้งซ่อม</span>
+    </li>
+    <li>
+        <i class="material-icons">
+            settings
+        </i>
+        <span>การตั้งค่า</span>
+    </li>
+    <li onclick="linkLocation(5)">
+        <i class="material-icons">
+            power_settings_new
+        </i>
+        <span>ออกจากระบบ</span>
+    </li>
+</ul>
+
+<script>
+    function linkLocation(id) {
+        switch (id) {
+            case 1:
+                location.href = "/admin"
+                break;
+            case 2:
+                location.href = "/account"
+                break;
+            case 3:
+                location.href = "/job"
+                break;
+            case 5:
+                location.href = "/logout"
+                break;
+
+            default:
+                break;
+        }
+    }
+</script>
