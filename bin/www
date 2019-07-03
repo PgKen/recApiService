@@ -1,0 +1,126 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('apiservice:server');
+var http = require('http');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '4200');
+app.set('port', port);
+
+
+
+/**
+ * Create HTTP server.
+ */
+//var Gpio = require('onoff').Gpio; //include onoff to interact with the GPIO
+//var LED = new Gpio(4, 'out'); //use GPIO pin 4, and specify that it is output
+
+var server = http.createServer(app);
+
+var io = require('socket.io')(server) //require socket.io module and pass the http object (server)
+io.sockets.on('connection', function (socket) { // WebSocket Connection
+  var lightvalue = 0; //static variable for current status
+  socket.emit('ans', "ส่งไรับด้วย");
+  socket.on('serviceAl', function (data) { //get light switch status from client
+    lightvalue = data;
+    console.log("test io");
+
+    if (lightvalue == 'have') {
+      //var blinkInterval = setInterval(blinkLED, 250); //run the blinkLED function every 250ms
+      //LED.writeSync(0); //set pin state to 1 (turn LED on)
+      console.log(lightvalue);
+      console.log("Open");
+
+
+
+    } else {
+      //LED.writeSync(1); //set pin state to 0 (turn LED off)
+      console.log(lightvalue);
+      console.log("Close");
+    }
+    console.log(lightvalue); //turn LED on or off, for now we will just show it in console.log
+    //}
+  });
+  socket.on('msg', function (data) {
+    let valMsg = data;
+    console.log(valMsg);
+  })
+});
+
+
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string' ?
+    'Pipe ' + port :
+    'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string' ?
+    'pipe ' + addr :
+    'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
