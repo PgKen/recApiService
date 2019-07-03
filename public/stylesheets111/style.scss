@@ -30,20 +30,6 @@ body {
         width: 1400px;
         margin: 0 auto;
 
-        .imgProfile {
-            display: flex;
-            /* border: 1px solid red; */
-            position: absolute;
-            margin: 5px;
-            border-radius: 50%;
-            overflow: hidden;
-
-            img {
-                width: 55px;
-                height: 100%;
-            }
-        }
-
         .rec-mainTitle {
             //border: 1px solid #CCC;
             display: flex;
@@ -143,7 +129,7 @@ body {
                 display: flex;
                 flex: 4;
                 flex-direction: column;
-                margin: 0 0 0 15px;
+                //margin: 0 0 0 15px;
 
                 .ad-titleArticle {
                     display: flex;
@@ -378,7 +364,28 @@ body {
                         justify-content: flex-end;
                         margin: 35px 0 0 0;
 
+                        span:nth-child(1) {
+                            flex: 1;
+                            display: flex;
+                            //border: 1px solid;
+                            justify-content: flex-end;
+
+                            input[type="text"] {
+                                width: 80%;
+                            }
+
+                        }
+
                         span:nth-child(2) {
+                            flex: 0.2;
+
+                            button {
+                                height: 90%;
+                                width: 100%;
+                            }
+                        }
+
+                        span:nth-child(3) {
                             i {
                                 color: red;
                             }
@@ -545,44 +552,6 @@ body {
             margin: 0;
             list-style: none;
 
-            .kbLoginPass {
-                display: flex;
-                // border: 1px solid red;
-                flex-direction: row;
-
-                ul {
-                    flex: 1;
-                    display: flex;
-                    flex-direction: row;
-                    padding: 0px;
-                    margin: 0;
-                    list-style: none;
-                    flex-wrap: wrap;
-                    // background-color: #607D8B;
-                    background-color: #a6c0cc;
-                    justify-content: center;
-
-                    li {
-                        display: flex;
-                        flex-basis: 47px;
-                        border: 1px solid #004d25;
-                        margin: 2px;
-                        padding: 5px 0 5px 0;
-                        justify-content: center;
-                        background-color: #009688;
-                        font-size: 20px;
-                        cursor: pointer;
-
-                        &:hover {
-                            color: #009688;
-                            background-color: #191919;
-                        }
-                    }
-                }
-            }
-
-
-
             li.detailLabel {
                 margin-top: 10px;
                 background-color: #929999;
@@ -625,14 +594,7 @@ body {
                 span {
 
                     flex: 1;
-
-                    input {
-                        font-size: 18px;
-                        padding: 1px;
-                        background-color: yellow;
-                    }
                 }
-
             }
 
             li.buttonService {

@@ -10,16 +10,6 @@ body {
     flex-direction: column;
     width: 1400px;
     margin: 0 auto; }
-    body .ad-mainContent .imgProfile {
-      display: flex;
-      /* border: 1px solid red; */
-      position: absolute;
-      margin: 5px;
-      border-radius: 50%;
-      overflow: hidden; }
-      body .ad-mainContent .imgProfile img {
-        width: 55px;
-        height: 100%; }
     body .ad-mainContent .rec-mainTitle {
       display: flex;
       justify-content: center;
@@ -86,8 +76,7 @@ body {
       body .ad-mainContent .ad-mainBox .ad-mainArticle {
         display: flex;
         flex: 4;
-        flex-direction: column;
-        margin: 0 0 0 15px; }
+        flex-direction: column; }
         body .ad-mainContent .ad-mainBox .ad-mainArticle .ad-titleArticle {
           display: flex;
           justify-content: center;
@@ -245,7 +234,18 @@ body {
             padding: 0 15px 0 0;
             justify-content: flex-end;
             margin: 35px 0 0 0; }
-            body .ad-mainContent .ad-mainBox .ad-mainArticle .ad-boxArticle .boxExec span:nth-child(2) i {
+            body .ad-mainContent .ad-mainBox .ad-mainArticle .ad-boxArticle .boxExec span:nth-child(1) {
+              flex: 1;
+              display: flex;
+              justify-content: flex-end; }
+              body .ad-mainContent .ad-mainBox .ad-mainArticle .ad-boxArticle .boxExec span:nth-child(1) input[type="text"] {
+                width: 80%; }
+            body .ad-mainContent .ad-mainBox .ad-mainArticle .ad-boxArticle .boxExec span:nth-child(2) {
+              flex: 0.2; }
+              body .ad-mainContent .ad-mainBox .ad-mainArticle .ad-boxArticle .boxExec span:nth-child(2) button {
+                height: 90%;
+                width: 100%; }
+            body .ad-mainContent .ad-mainBox .ad-mainArticle .ad-boxArticle .boxExec span:nth-child(3) i {
               color: red; }
             body .ad-mainContent .ad-mainBox .ad-mainArticle .ad-boxArticle .boxExec span {
               margin: 0 0 0 10px;
@@ -343,32 +343,6 @@ body {
       padding: 0;
       margin: 0;
       list-style: none; }
-      body .ad-mainContent ul.boxDetailService_1 .kbLoginPass {
-        display: flex;
-        flex-direction: row; }
-        body .ad-mainContent ul.boxDetailService_1 .kbLoginPass ul {
-          flex: 1;
-          display: flex;
-          flex-direction: row;
-          padding: 0px;
-          margin: 0;
-          list-style: none;
-          flex-wrap: wrap;
-          background-color: #a6c0cc;
-          justify-content: center; }
-          body .ad-mainContent ul.boxDetailService_1 .kbLoginPass ul li {
-            display: flex;
-            flex-basis: 47px;
-            border: 1px solid #004d25;
-            margin: 2px;
-            padding: 5px 0 5px 0;
-            justify-content: center;
-            background-color: #009688;
-            font-size: 20px;
-            cursor: pointer; }
-            body .ad-mainContent ul.boxDetailService_1 .kbLoginPass ul li:hover {
-              color: #009688;
-              background-color: #191919; }
       body .ad-mainContent ul.boxDetailService_1 li.detailLabel {
         margin-top: 10px;
         background-color: #929999;
@@ -392,10 +366,6 @@ body {
         border-bottom: 1px solid #CCC; }
         body .ad-mainContent ul.boxDetailService_1 li span {
           flex: 1; }
-          body .ad-mainContent ul.boxDetailService_1 li span input {
-            font-size: 18px;
-            padding: 1px;
-            background-color: yellow; }
       body .ad-mainContent ul.boxDetailService_1 li.buttonService {
         margin: 25px;
         justify-content: center;

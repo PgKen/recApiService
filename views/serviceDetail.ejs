@@ -31,7 +31,7 @@
                 <li class="detailLabel">
                     <span>รายละเอียดของปัญหา</span>
                 </li>
-                <li class="detailText">
+                <li class="detailText" id="detailText">
                     <span>
                         <%= dataJob[0].detail_job %>
                     </span>
@@ -74,6 +74,9 @@
                 <li class="user" id="chkServiceDetail2">
 
                 </li>
+                <div class="kbLoginPass" id="kb_cause">
+
+                </div>
                 <li class="user">
 
                     <span>ผู้รับแจ้ง</span>
@@ -103,6 +106,13 @@
 </body>
 
 <script>
+    let oldTel = ""
+    let newTel = ""
+    let statusShif = 0
+
+    let oldKeyProblem = ""
+    let newKeyProblem = ""
+
     let th = ["cls", "", "", "ภ", "ถ", "ุ", "ึ", "ค", "ต", "จ", "ข", "ช",
         "Backspace", "", "ๆ", "ไ", "ำ", "พ", "ะ", "ั", "ี", "ร", "น", "ย", "บ", "ล", "ฃ",
         "", "ฟ", "ห", "ก", "ด", "เ", "้", "่", "า", "ส", "ว", "ง", "Enter",
@@ -115,6 +125,49 @@
     ]
 
 
+    function loadProblem(i) {
+
+        document.getElementById('detailText').style.display = "none"
+
+
+        let start = 0;
+        let end = 53;
+
+        if (i == 0) {
+            start = 0;
+            end = 53;
+            statusShif = 1
+        } else {
+            start = 53;
+            end = 106;
+            statusShif = 0
+        }
+
+        let txt = '<ul>'
+
+        for (let i = start; i < end; i++) { //console.log(th[i]) 
+            if (th[i] == 'Backspace') {
+                txt += "<li onclick='clickKeyBackspace()' style='flex-basis: 100px;'>" + th[i] + "</li>"
+            } else if (th[i] == 'Enter') {
+                txt += "<li onclick='clickKeyEnter()' style='flex-basis: 100px;'>" + th[i] + "</li>"
+            } else if (th[i] == 'Shift') {
+                txt += "<li onclick='loadProblem(" + statusShif +
+                    ")' style='flex-basis: 100px;'>" + th[i] + "</li>"
+            } else if (th[i] == 'space') {
+                txt
+                    += "<li onclick='clickKeySpace()' style='flex-basis: 350px;margin: 2px auto;'>" + th[i] + "</li>"
+            } else if (th[i] == 'cls') {
+                txt += "<li onclick='clickKeyCls()' style='color:orangered;'>" + th[i] + "</li>"
+            } else {
+                txt += "<li onclick='clickKeyProblem(" + i + ")'>" + th[i] + "</li>"
+            }
+        }
+        txt += "</ul>"
+        document.getElementById('kb_cause').innerHTML = txt
+    }
+
+
+
     function linkLogout() {
         location.href = "/logout"
     }
@@ -125,8 +178,8 @@
     }
 
     txt = "<input type='date'>"
-    txt2 =
-        "<span style='flex:0.5;'>สาเหตุที่ยังซ่อมไม่ได้ </span><span><input style='width:98%;'type='text'></span></<span>"
+    txt2 = "<span style='flex:0.5;'>สาเหตุที่ยังซ่อมไม่ได้ </span>"
+    txt2 += "<span><input style='width:98%;' type='text' id='detail' onclick='loadProblem(0)'></span>"
 
     $(document).ready(function () {
         $("input[type='radio']").click(function () {
@@ -143,6 +196,49 @@
         });
 
     });
+
+    function kb_cause() {
+        console.log("detali_cause");
+
+    }
+
+    function clickKeyProblem(i) {
+        console.log("key i =" + i + "value = " + th[i])
+        newKeyProblem = oldKeyProblem + th[i]
+        console.log("newKeyProblem" + newKeyProblem)
+        document.getElementById('detail').value = newKeyProblem
+        //document.getElementById('detail').value = newKeyProblem
+        oldKeyProblem = newKeyProblem
+    }
+
+    function clickKeyBackspace() {
+        let getOld = document.getElementById('detail').value
+        getOld = getOld.substring(0, getOld.length - 1);
+        oldKeyProblem = getOld
+        document.getElementById('detail').value = oldKeyProblem
+        if (getOld.length == 0) {
+            document.getElementById('detail').value = ""
+        }
+    }
+
+    function clickKeyEnter() {
+        //document.getElementById('keyboardProblem').innerHTML = ""
+        document.getElementById('kb_cause').innerHTML = ""
+        document.getElementById('detailText').style.display = "flex"
+
+    }
+
+    function clickKeySpace() {
+        newKeyProblem = oldKeyProblem + " "
+        document.getElementById('detail').value = newKeyProblem
+        oldKeyProblem = newKeyProblem
+    }
+
+    function clickKeyCls() {
+        oldKeyProblem = ""
+        document.getElementById('detail').value = oldKeyProblem
+
+    }
 </script>
 
 </html>

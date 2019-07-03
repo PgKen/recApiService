@@ -16,6 +16,7 @@
 
 <body>
     <div class="ad-mainContent">
+
         <div class="rec-mainTitle"><label><%= title %> </label></div>
         <div class="ad-mainTitle" id="ad-mainTitle"><label for="" id="showService">&nbsp;</label></div>
         <div class="ad-mainBox">
@@ -53,6 +54,7 @@
                     </div>
 
                     <div class="boxExec" id="boxExec">
+
                         <span>
                             <i class="material-icons" onclick="linkRestart()">
                                 settings_backup_restore
@@ -149,10 +151,12 @@
                         document.getElementById('showService').innerHTML = res[0].detail_job
 
                         socket.emit('serviceAl', "have");
+
                         // return false;
 
                     } else {
                         socket.emit('serviceAl', "not");
+
                         console.log("not have");
                         document.getElementById('showService').innerHTML = ""
 
@@ -361,6 +365,21 @@
     function linkRestart() {
         //console.log('alsdkjf;alsdfj')
         location.href = "./re"
+    }
+
+    function sendMsg() {
+        console.log("test")
+        let msg = document.getElementById('msg').value
+        socket.emit('msg', msg);
+        setTimeout(() => {
+            socket.on('ans', function (data) {
+                console.log("datatada")
+                let getData = data;
+                document.getElementById('msg').value = "ตอบ"
+            })
+
+        }, 2500);
+
     }
 </script>
 

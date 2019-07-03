@@ -13,6 +13,22 @@ var exec = require('child_process').exec;
 
 var mysql = require('mysql')
 
+var http = require('http');
+var io = require('socket.io')(http)
+
+//var server = http.createServer(app);
+
+
+//setInterval(() => {
+console.log("set 10000");
+io.sockets.on('connection', function (socket) {
+  socket.on('msg', function (data) {
+    console.log("test indexแแแแ");
+  })
+})
+
+//}, 1000);
+console.log("test0001");
 
 
 const apiKey = "1a2b3c4d5e6d"
@@ -312,18 +328,23 @@ router.get('/updateSuccess', (req, res) => {
 
 router.get('/sh', (req, res) => {
   //hell.shutdown
+  exec('pkill chromium', function (error, stdout, stderr) {})
   exec('shutdown now', function (error, stdout, stderr) {
     callback(stdout);
   });
-  res.send('shutdow')
+  res.send('restart')
 })
 
 router.get('/re', (req, res) => {
   //hell.shutdown
-  exec('shutdown -r now', function (error, stdout, stderr) {
-    callback(stdout);
-  });
+  exec('pkill chromium', function (error, stdout, stderr) {})
+  setTimeout(() => {
+    exec('shutdown -r now', function (error, stdout, stderr) {
+      callback(stdout);
+    });
+  }, 1500);
   res.send('shutdow')
 })
+
 
 module.exports = router;
