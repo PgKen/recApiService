@@ -97,6 +97,7 @@
                         </span>
                     </button>
                 </li>
+                <input type="hidden" value="<%= moment(dateNow).format("YYYY-MM-DD") %>" name="valDateNow">
                 <input type="hidden" value="1" name="valService">
                 <input type="hidden" value="<%= dataUserLogin[0].id_pro %>" name="valManId">
                 <input type="hidden" value="<%= dataJob[0].jobId %>" name="valJobId">
@@ -177,9 +178,9 @@
         location.href = "/serviceDetail/" + id
     }
 
-    txt = "<input type='date'>"
+    txt = "<input type='date' name='dateService'>"
     txt2 = "<span style='flex:0.5;'>สาเหตุที่ยังซ่อมไม่ได้ </span>"
-    txt2 += "<span><input style='width:98%;' type='text' id='detail' onclick='loadProblem(0)'></span>"
+    txt2 += "<span><input style='width:98%;' type='text' name='detail' id='detail' onclick='loadProblem(0)'></span>"
 
     $(document).ready(function () {
         $("input[type='radio']").click(function () {

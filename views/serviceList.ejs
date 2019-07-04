@@ -47,13 +47,17 @@
                 <span><%= data[i].detail_job %></span>
                 <span><%= data[i].service %></span>
                 <% if (data[i].service == 0) { %>
-                <span><button onclick="detailService(<%= data[i].jobId %>)">
-                        <i class="material-icons">
-                            search
-                        </i>
-                    </button></span>
-                <% }else{ %>
-                <span><button>--</button></span>
+                <span>
+                    <button style="background-color: #FF9800;" onclick="detailService(<%= data[i].jobId %>)">
+                        รับแจ้ง
+                    </button>
+                </span>
+                <% }else if(data[i].service == 1){ %>
+                <span>
+                    <button style="background-color: #8BC34A;" onclick="ansService(<%= data[i].jobId %>)">
+                        แจ้งผลซ่อม
+                    </button>
+                </span>
                 <% } %>
 
             </li>
@@ -73,6 +77,10 @@
     function detailService(id) {
         console.log("idService = " + id)
         location.href = "/serviceDetail/" + id
+    }
+
+    function ansService(id) {
+        console.log("ans" + id)
     }
 </script>
 
