@@ -178,7 +178,6 @@ router.post('/service-chkLogin', (req, res) => {
   let password = data.password
   //console.log(data);
 
-
   const response = new Promise(resolve => {
     unirest.post(urlChkListService)
       .headers({
@@ -217,6 +216,10 @@ router.post('/service-chkLogin', (req, res) => {
   });
 })
 
+
+router.get('/serviceList', (req, res) => {
+
+})
 
 router.get('/serviceDetail/:id', (req, res) => {
   let jobId = req.params.id
