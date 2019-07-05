@@ -38,28 +38,13 @@ const contFnTitle = "ระบบงานรับแจ้งซ่อม"
 const subTitle = "รายการแจ้งซ่อม"
 let login
 
-const urlChkLogin = "http://172.16.1.188:4400/fn-chkLogin"
-//const urlChkLogin = "http://localhost:4400/fn-chkLogin"
-//const urlChkLogin = "http://taladsrimuang.com:4400/fn-chkLogin"
+var {urlChkLogin} = require('../Config/dataConfig')
+var {urlChkListService} = require('../Config/dataConfig')
+var {urlSendJob} = require('../Config/dataConfig')
+var {urlJobDetail} = require('../Config/dataConfig')
 
-const urlChkListService = "http://172.16.1.188:4400/fn-listService"
-//const urlChkLogin = "http://localhost:4400/fn-chkLogin"
-//const urlChkLogin = "http://taladsrimuang.com:4400/fn-chkLogin"
-/******* sendJob */
-const urlSendJob = "http://172.16.1.188:4400/fn-sendJob"
-//const urlChkLogin = "http://localhost:4400/fn-chkLogin"
-//const urlChkLogin = "http://taladsrimuang.com:4400/fn-chkLogin"
-/***** End SendJob */
+console.log(urlChkLogin);
 
-const urlJobDetail = "http://172.16.1.188:4400/jobDetail"
-//const urlChkLogin = "http://localhost:4400/fn-chkLogin"
-//const urlChkLogin = "http://taladsrimuang.com:4400/fn-chkLogin"
-/******* sendJob */
-
-const urlRecService = "http://172.16.1.188:4400/updateService"
-//const urlChkLogin = "http://localhost:4400/fn-chkLogin"
-//const urlChkLogin = "http://taladsrimuang.com:4400/fn-chkLogin"
-/******* sendJob */
 
 
 /***** RFID */
