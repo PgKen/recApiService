@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <title><%= title %></title>
+</head>
+
+<body>
+    <div class="ad-mainContent">
+        <div class="rec-mainTitle">
+            <label for=""><%= title %> </label>
+            <span>
+                <i onclick="linkLogout()" class="material-icons">exit_to_app</i>
+            </span>
+        </div>
+        <div class="ad-mainBox">
+            <div class="ad-mainArticle">
+                <div class="ad-titleArticle"><%= subTitle %></div>
+            </div>
+
+        </div>
+
+        <ul class="boxDetailService_1">
+            <form action="/submitRecService" method="post">
+                <li class="detailLabel">
+                    <span><%= manCommentTitle %> </span>
+                </li>
+                <li>
+                    <span><input type="radio" name="cause" value="0" onclick="showInpCause(0)">ขาดการดูแลรักษา</span>
+                    <span><input type="radio" name="cause" value="1" onclick="showInpCause(1)">ใช้งานผิดประเภท</span>
+                    <span><input type="radio" name="cause" value="2" onclick="showInpCause(2)">อะไหล่ไม่มีคุณภาพ</span>
+                    <span><input type="radio" name="cause" value="3" onclick="showInpCause(3)">อื่นๆ</span>
+                </li>
+                <li>
+                    <span class="input100" id="inputCaus" onclick="loadProblem(0)"><input type="text"
+                            id="detail"></span>
+                </li>
+                <div class="kbLoginPass" id="kb_cause">
+
+                </div>
+
+                <li class="buttonService">
+                    <button type="submit"><i class="material-icons">
+                            build
+                        </i>
+                        <span>
+                            แจ้งผลซ่อม
+                        </span>
+                    </button>
+                </li>
+                <!--  -->
+                <input type="hidden" name="valIdCause">
+                <!--  -->
+
+            </form>
+        </ul>
+    </div>
+</body>
+
+<script>
+    function showInpCause(id) {
+        if (id == 3) {
+            document.getElementById('inputCaus').style.display = "flex"
+        } else {
+            document.getElementById('inputCaus').style.display = "none"
+        }
+    }
+
+    let oldTel = ""
+    let newTel = ""
+    let statusShif = 0
+
+    let oldKeyProblem = ""
+    let newKeyProblem = ""
+
+    let th = ["cls", "", "", "ภ", "ถ", "ุ", "ึ", "ค", "ต", "จ", "ข", "ช",
+        "Backspace", "", "ๆ", "ไ", "ำ", "พ", "ะ", "ั", "ี", "ร", "น", "ย", "บ", "ล", "ฃ",
+        "", "ฟ", "ห", "ก", "ด", "เ", "้", "่", "า", "ส", "ว", "ง", "Enter",
+        "Shift", "ผ", "ป", "แ", "อ", "ิ", "ื", "ท", "ม", "ใ", "ฝ", "Shift",
+        "space", "cls", "1", "2", "3", "4", "ู", "฿", "5", "6", "7", "8", "9",
+        "Backspace", "", "0", "\"", "ฎ", "ฑ", "ธ", "ํ", "๊", "ณ", "ฯ", "ญ", "ฐ", "\,", "ฅ",
+        "", "ฤ", "ฆ", "ฏ", "โ", "ฌ", "็", "๋", "ษ", "ศ", "ซ", ".", "Enter",
+        "Shift", "(", ")", "ฉ", "ฮ", "ฺ", "์", "?", "ฒ", "ฬ", "ฦ", "Shift",
+        "space"
+    ]
+
+
+    function loadProblem(i) {
+
+        //document.getElementById('detailText').style.display = "none"
+
+
+        let start = 0;
+        let end = 53;
+
+        if (i == 0) {
+            start = 0;
+            end = 53;
+            statusShif = 1
+        } else {
+            start = 53;
+            end = 106;
+            statusShif = 0
+        }
+
+        let txt = '<ul>'
+
+        for (let i = start; i < end; i++) { //console.log(th[i]) 
+            if (th[i] == 'Backspace') {
+                txt += "<li onclick='clickKeyBackspace()' style='flex-basis: 100px;'>" + th[i] + "</li>"
+            } else if (th[i] == 'Enter') {
+                txt += "<li onclick='clickKeyEnter()' style='flex-basis: 100px;'>" + th[i] + "</li>"
+            } else if (th[i] == 'Shift') {
+                txt += "<li onclick='loadProblem(" + statusShif +
+                    ")' style='flex-basis: 100px;'>" + th[i] + "</li>"
+            } else if (th[i] == 'space') {
+                txt
+                    += "<li onclick='clickKeySpace()' style='flex-basis: 350px;margin: 2px auto;'>" + th[i] + "</li>"
+            } else if (th[i] == 'cls') {
+                txt += "<li onclick='clickKeyCls()' style='color:orangered;'>" + th[i] + "</li>"
+            } else {
+                txt += "<li onclick='clickKeyProblem(" + i + ")'>" + th[i] + "</li>"
+            }
+        }
+        txt += "</ul>"
+        document.getElementById('kb_cause').innerHTML = txt
+    }
+
+
+
+    function linkLogout() {
+        location.href = "/logout"
+    }
+
+    function detailService(id) {
+        console.log("idService = " + id)
+        location.href = "/serviceDetail/" + id
+    }
+
+    txt = "<input type='date' name='dateService'>"
+    txt2 = "<span style='flex:0.5;'>สาเหตุที่ยังซ่อมไม่ได้ </span>"
+    txt2 += "<span><input style='width:98%;' type='text' name='detail' id='detail' onclick='loadProblem(0)'></span>"
+
+    $(document).ready(function () {
+        $("input[type='radio']").click(function () {
+            var radioValue = $("input[name='chkService']:checked").val();
+            if (radioValue == 2) {
+                document.getElementById('chkServiceDetail').innerHTML = txt
+                document.getElementById('chkServiceDetail2').innerHTML = txt2
+                //alert("Your are a - " + radioValue);
+            } else {
+
+                document.getElementById('chkServiceDetail').innerHTML = ""
+                document.getElementById('chkServiceDetail2').innerHTML = ""
+            }
+        });
+
+    });
+
+    function kb_cause() {
+        console.log("detali_cause");
+
+    }
+
+    function clickKeyProblem(i) {
+        console.log("key i =" + i + "value = " + th[i])
+        newKeyProblem = oldKeyProblem + th[i]
+        console.log("newKeyProblem" + newKeyProblem)
+        document.getElementById('detail').value = newKeyProblem
+        //document.getElementById('detail').value = newKeyProblem
+        oldKeyProblem = newKeyProblem
+    }
+
+    function clickKeyBackspace() {
+        let getOld = document.getElementById('detail').value
+        getOld = getOld.substring(0, getOld.length - 1);
+        oldKeyProblem = getOld
+        document.getElementById('detail').value = oldKeyProblem
+        if (getOld.length == 0) {
+            document.getElementById('detail').value = ""
+        }
+    }
+
+    function clickKeyEnter() {
+        //document.getElementById('keyboardProblem').innerHTML = ""
+        document.getElementById('kb_cause').innerHTML = ""
+        document.getElementById('detailText').style.display = "flex"
+
+    }
+
+    function clickKeySpace() {
+        newKeyProblem = oldKeyProblem + " "
+        document.getElementById('detail').value = newKeyProblem
+        oldKeyProblem = newKeyProblem
+    }
+
+    function clickKeyCls() {
+        oldKeyProblem = ""
+        document.getElementById('detail').value = oldKeyProblem
+
+    }
+</script>
+
+</html>

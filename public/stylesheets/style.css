@@ -396,6 +396,13 @@ body {
             font-size: 18px;
             padding: 1px;
             background-color: yellow; }
+        body .ad-mainContent ul.boxDetailService_1 li span.input100 {
+          padding: 5px;
+          margin: 5px; }
+          body .ad-mainContent ul.boxDetailService_1 li span.input100 input {
+            flex-basis: 100%; }
+        body .ad-mainContent ul.boxDetailService_1 li span#inputCaus {
+          display: none; }
       body .ad-mainContent ul.boxDetailService_1 li.buttonService {
         margin: 25px;
         justify-content: center;

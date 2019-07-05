@@ -633,6 +633,22 @@ body {
                     }
                 }
 
+                span.input100 {
+                    //background-color: red;
+                    padding: 5px;
+                    margin: 5px;
+                    //display: none;
+
+                    input {
+                        flex-basis: 100%;
+                        //background-color: red;
+                    }
+                }
+
+                span#inputCaus {
+                    display: none;
+                }
+
             }
 
             li.buttonService {

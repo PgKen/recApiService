@@ -320,6 +320,20 @@ router.get('/updateSuccess', (req, res) => {
 })
 
 
+router.get('/serviceAns/:id', (req, res) => {
+
+  res.render('serviceAns', {
+    title: contFnTitle,
+    subTitle: "แจ้งผลการซ่อม",
+    manCommentTitle: "สาเหตุของการเสีย",
+    moment: moment,
+    dateNow: dateNow,
+    timeNow: timeNow
+  })
+  //res.send("ans")
+})
+
+
 
 // router.get('/api/podcasts', (req, res) => {
 //   let url = "http://taladsrimuang.com:4300/1a2b3c4d5e6d/dataJobMode"
