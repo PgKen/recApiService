@@ -20,7 +20,7 @@ var io = require('socket.io')(http)
 
 
 //setInterval(() => {
-console.log("set 10000");
+//console.log("set 10000");
 io.sockets.on('connection', function (socket) {
   socket.on('msg', function (data) {
     console.log("test indexแแแแ");
@@ -28,7 +28,7 @@ io.sockets.on('connection', function (socket) {
 })
 
 //}, 1000);
-console.log("test0001");
+//console.log("test0001");
 
 
 const apiKey = "1a2b3c4d5e6d"
@@ -38,12 +38,24 @@ const contFnTitle = "ระบบงานรับแจ้งซ่อม"
 const subTitle = "รายการแจ้งซ่อม"
 let login
 
-var {urlChkLogin} = require('../Config/dataConfig')
-var {urlChkListService} = require('../Config/dataConfig')
-var {urlSendJob} = require('../Config/dataConfig')
-var {urlJobDetail} = require('../Config/dataConfig')
+var {
+  urlChkLogin
+} = require('../Config/dataConfig')
+var {
+  urlChkListService,
+  urlUpdateService
+} = require('../Config/dataConfig')
 
-console.log(urlChkLogin);
+var {
+  urlSendJob
+} = require('../Config/dataConfig')
+
+var {
+  urlJobDetail
+} = require('../Config/dataConfig')
+
+
+//console.log(urlChkLogin);
 
 
 
@@ -212,6 +224,9 @@ router.get('/serviceDetail/:id', (req, res) => {
   let val_statusLogin = req.cookies['statusLogin']
   let val_idUserLogin = req.cookies['idUserLogin']
 
+  console.log("cookie = " + val_statusLogin);
+
+
   if (val_statusLogin == "autPass") {
     console.log(jobId);
     const response = new Promise(resolve => {
@@ -237,7 +252,8 @@ router.get('/serviceDetail/:id', (req, res) => {
         res.cookie('statusLogin', resp.statusLogin)
         //res.send('okPass')
         let val_statusLogin = req.cookies['statusLogin'] // set Cookie statusLogin
-        console.log(val_statusLogin);
+        //console.log("Cookie....");
+        //console.log(val_statusLogin);
         res.render('serviceDetail', {
           title: contFnTitle,
           subTitle: "รายละเอียดงานแจ้งซ่อม",
@@ -265,7 +281,7 @@ router.post('/submitRecService', (req, res) => {
   console.log(data);
 
   const response = new Promise(resolve => {
-    unirest.post(urlRecService)
+    unirest.post(urlUpdateService)
       .headers({
         'Accept': 'application/json',
         'Content-Type': 'application/json'
