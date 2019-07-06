@@ -54,6 +54,9 @@ var {
   urlJobDetail
 } = require('../Config/dataConfig')
 
+var {
+  urlAnsService
+} = require('../Config/dataConfig')
 
 //console.log(urlChkLogin);
 
@@ -295,9 +298,7 @@ router.post('/submitRecService', (req, res) => {
   response.then(function (resp) {
     console.log(resp);
     if (resp.statusLogin == 'autPass') {
-
       res.cookie('statusLogin', resp.statusLogin)
-      //res.send('okPass')
       let val_statusLogin = req.cookies['statusLogin'] // set Cookie statusLogin
       console.log(val_statusLogin);
       res.render('updateData', {
@@ -322,8 +323,10 @@ router.get('/updateSuccess', (req, res) => {
 
 
 router.get('/serviceAns/:id', (req, res) => {
+  let idJob = req.params.id
 
   res.render('serviceAns', {
+    idJob: idJob,
     title: contFnTitle,
     subTitle: "แจ้งผลการซ่อม",
     manCommentTitle: "สาเหตุของการเสีย",
@@ -332,6 +335,45 @@ router.get('/serviceAns/:id', (req, res) => {
     timeNow: timeNow
   })
   //res.send("ans")
+})
+
+router.post('/submitAnsService', (req, res) => {
+  let data = req.body
+  console.log(data);
+  const response = new Promise(resolve => {
+    unirest.post(urlAnsService)
+      .headers({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      })
+      .send(data)
+      .end(function (response) {
+        resolve(response.body); // ส่งเข้ามาแค่ body ส่งต่อ then()
+        //resolve(response); //  ส่งเข้ามาจาก Host ทั้งหมด
+      });
+  });
+  response.then(function (resp) {
+    console.log(resp);
+    if (resp.statusLogin == 'autPass') {
+
+      res.cookie('statusLogin', resp.statusLogin)
+      //res.send('okPass')
+      let val_statusLogin = req.cookies['statusLogin'] // set Cookie statusLogin
+      console.log(val_statusLogin);
+      res.render('updateData', {
+        title: contFnTitle,
+        subTitle: "กำลังอัฟเดทข้อมูล โปรดรอสักครู่",
+        moment: moment,
+        dateNow: dateNow,
+        timeNow: timeNow
+      })
+      //res.redirect('service-chkLogin')
+    } else {
+      res.redirect('serviceProject')
+    }
+    // expected output: "Success!"
+  });
+  //res.end()
 })
 
 

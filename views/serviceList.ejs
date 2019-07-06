@@ -32,6 +32,7 @@
         </div>
 
         <ul class="boxListService">
+
             <li>
                 <span>ลำดับ</span>
                 <span>รายการ</span>
@@ -58,8 +59,13 @@
                         แจ้งผลซ่อม
                     </button>
                 </span>
+                <% }else if(data[i].service == 3){ %>
+                <span>
+                    <button style="background-color: #9E9E9E;color: white;">
+                        เสร็จแล้ว
+                    </button>
+                </span>
                 <% } %>
-
             </li>
             <% } %>
         </ul>

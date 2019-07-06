@@ -27,19 +27,21 @@
         </div>
 
         <ul class="boxDetailService_1">
-            <form action="/submitRecService" method="post">
+            <form action="/submitAnsService" method="post">
+                <input type="text" name="serviceId" id="" value="<%= idJob %>">
                 <li class="detailLabel">
                     <span><%= manCommentTitle %> </span>
                 </li>
                 <li>
-                    <span><input type="radio" name="cause" value="0" onclick="showInpCause(0)">ขาดการดูแลรักษา</span>
-                    <span><input type="radio" name="cause" value="1" onclick="showInpCause(1)">ใช้งานผิดประเภท</span>
-                    <span><input type="radio" name="cause" value="2" onclick="showInpCause(2)">อะไหล่ไม่มีคุณภาพ</span>
-                    <span><input type="radio" name="cause" value="3" onclick="showInpCause(3)">อื่นๆ</span>
+                    <span><input type="radio" name="cause" value="1" onclick="showInpCause(0)"
+                            checked>ขาดการดูแลรักษา</span>
+                    <span><input type="radio" name="cause" value="2" onclick="showInpCause(1)">ใช้งานผิดประเภท</span>
+                    <span><input type="radio" name="cause" value="3" onclick="showInpCause(2)">อะไหล่ไม่มีคุณภาพ</span>
+                    <span><input type="radio" name="cause" value="4" onclick="showInpCause(3)">อื่นๆ</span>
                 </li>
                 <li>
-                    <span class="input100" id="inputCaus" onclick="loadProblem(0)"><input type="text"
-                            id="detail"></span>
+                    <span class="input100" id="inputCaus" onclick="loadProblem(0)">
+                        <input type="text" id="detail" name="detail"></span>
                 </li>
                 <div class="kbLoginPass" id="kb_cause">
 
