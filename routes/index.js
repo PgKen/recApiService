@@ -58,6 +58,14 @@ var {
   urlAnsService
 } = require('../Config/dataConfig')
 
+var {
+  urlGetJobDetail
+} = require('../Config/dataConfig')
+
+var {
+  urlJobPreview
+} = require('../Config/dataConfig')
+
 //console.log(urlChkLogin);
 
 
@@ -155,6 +163,10 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/serviceProject', (req, res) => {
+  let val_statusLogin = req.cookies['statusLogin']
+  let val_idUserLogin = req.cookies['idUserLogin']
+  console.log("val cookies = " + val_statusLogin);
+  console.log("val cookies = " + val_idUserLogin);
   res.render('serviceProject', {
     title: contFnTitle
   })
@@ -163,8 +175,40 @@ router.get('/serviceProject', (req, res) => {
 
 
 router.get('/logout', (req, res) => {
-  //res.clearCookie("loginCookie");
-  res.redirect('serviceProject')
+
+  async function main() {
+    await clearCookies();
+    //await logCookies();
+    await setRedire();
+  }
+
+  function clearCookies() {
+
+    res.clearCookie('statusLogin', {
+      path: '/'
+    })
+    res.clearCookie('idUserLogin', {
+      path: '/'
+    })
+    console.log("clear");
+
+  }
+
+  function logCookies() {
+    console.log("show");
+    let val_statusLogin = req.cookies['statusLogin']
+    let val_idUserLogin = req.cookies['idUserLogin']
+    console.log("val cookies = " + val_statusLogin);
+    console.log("val cookies = " + val_idUserLogin);
+  }
+
+  function setRedire() {
+    res.redirect('serviceProject')
+  }
+
+  main()
+
+
   //res.send('test')
 })
 
@@ -195,8 +239,14 @@ router.post('/service-chkLogin', (req, res) => {
     console.log(resp);
     if (resp.statusLogin == 'autPass') {
 
-      res.cookie('statusLogin', resp.statusLogin)
-      res.cookie('idUserLogin', resp.idUser)
+      //res.cookie('statusLogin', resp.statusLogin)
+      res.cookie('statusLogin', resp.statusLogin, {
+        path: '/'
+      })
+      //res.cookie('idUserLogin', resp.idUser)
+      res.cookie('idUserLogin', resp.idUser, {
+        path: '/'
+      })
       //res.send('okPass')
       let val_statusLogin = req.cookies['statusLogin'] // set Cookie statusLogin
       console.log(val_statusLogin);
@@ -279,6 +329,63 @@ router.get('/serviceDetail/:id', (req, res) => {
   }
 })
 
+
+router.get('/jobDetail_preview/:id', (req, res) => {
+  let id = req.params.id
+  let idUser = req.cookies['idUserLogin']
+  console.log("idUser = " + idUser);
+
+  // async function main() {
+  //   await sendData();
+  //   await getData();
+  // }
+
+  //function sendData() {
+  console.log("send DATA for preview" + id);
+
+  const response = new Promise(resolve => {
+    unirest.get(urlJobPreview)
+      .headers({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      })
+      .send({
+        id: id, // job id
+        idUser: idUser
+
+      })
+      .end((response, response2, response3) => {
+        resolve(response.body)
+      })
+  });
+
+  //response.then((dataManSend, dataManService, dataJob) => {
+  response.then((resp, reject) => {
+    let val_statusLogin = req.cookies['statusLogin'] // set Cookie statusLogin);
+    console.log("cookie = " + val_statusLogin);
+
+    //console.log(dataManSend);
+    // console.log(dataManService);
+    console.log(resp);
+    //res.end()
+
+    res.render('jobDetail_preview', {
+      title: contFnTitle,
+      subTitle: "รายละเอียด",
+      moment: moment,
+      dateNow: dateNow,
+      timeNow: timeNow,
+      //
+
+      dataJob: resp.dataJob,
+      dataMan: resp.dataManService,
+      dataManSend: resp.dataManSend
+      //dataCause: resp.dataCause
+
+    })
+  })
+
+})
 router.post('/submitRecService', (req, res) => {
   let data = req.body
   console.log(data);
@@ -377,14 +484,56 @@ router.post('/submitAnsService', (req, res) => {
 })
 
 
+router.get('/jobDetail/:id', (req, res) => {
+  let id = req.params.id
+  // async function main() {
+  //   await sendData();
+  //   await getData();
+  // }
 
-// router.get('/api/podcasts', (req, res) => {
-//   let url = "http://taladsrimuang.com:4300/1a2b3c4d5e6d/dataJobMode"
-//   unirest.get(url).end((response) => {
-//     //make sure response should be a JSON object
-//     res.status(200).send(response)
-//   });
-// });
+  //function sendData() {
+  console.log("send DATA" + id);
+
+  const response = new Promise(resolve => {
+    unirest.get(urlGetJobDetail)
+      .headers({
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      })
+      .send({
+        id: id
+      })
+      .end((response) => {
+        resolve(response.body)
+      })
+  });
+
+  //response.then((dataManSend, dataManService, dataJob) => {
+  response.then((resp, reject) => {
+    let val_statusLogin = req.cookies['statusLogin'] // set Cookie statusLogin);
+    console.log("cookie = " + val_statusLogin);
+
+    //console.log(dataManSend);
+    // console.log(dataManService);
+    console.log(resp);
+
+    res.render('jobDetail', {
+      title: contFnTitle,
+      subTitle: "รายละเอียด",
+      moment: moment,
+      dateNow: dateNow,
+      timeNow: timeNow,
+      //
+      dataJob: resp.dataJob,
+      dataMan: resp.dataManService,
+      dataManSend: resp.dataManSend,
+      dataCause: resp.dataCause
+
+    })
+  })
+
+})
+
 
 router.get('/sh', (req, res) => {
   //hell.shutdown

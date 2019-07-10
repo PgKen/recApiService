@@ -60,9 +60,11 @@ body {
       padding: 5px;
       color: black;
       height: 100px; }
+      body .ad-mainContent .ad-mainTitle label {
+        font-size: 20px; }
     body .ad-mainContent .ad-mainBox {
       display: flex;
-      flex-direction: row; }
+      flex-direction: column; }
       body .ad-mainContent .ad-mainBox ul.ad-menu {
         display: flex;
         flex-direction: column;
@@ -337,6 +339,48 @@ body {
             display: none; }
           body .ad-mainContent .ad-mainBox .ad-mainArticle .ad-boxArticle #kbLoginPass {
             display: none; }
+      body .ad-mainContent .ad-mainBox .boxReport {
+        flex-direction: column;
+        flex: 1; }
+        body .ad-mainContent .ad-mainBox .boxReport ul.boxReport1 {
+          padding: 0;
+          margin: 0;
+          list-style: none;
+          display: flex;
+          border: 1px solid green;
+          flex-direction: column; }
+          body .ad-mainContent .ad-mainBox .boxReport ul.boxReport1 li {
+            border-bottom: 1px solid #CCC;
+            display: flex;
+            flex-direction: row; }
+            body .ad-mainContent .ad-mainBox .boxReport ul.boxReport1 li span.ans {
+              color: blue; }
+            body .ad-mainContent .ad-mainBox .boxReport ul.boxReport1 li span {
+              flex: 1;
+              text-align: left;
+              display: flex;
+              align-items: center; }
+              body .ad-mainContent .ad-mainBox .boxReport ul.boxReport1 li span i {
+                font-size: 30px; }
+              body .ad-mainContent .ad-mainBox .boxReport ul.boxReport1 li span input[type=checkbox] {
+                width: 6mm;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                height: 6mm;
+                border: 0.1mm solid black; }
+              body .ad-mainContent .ad-mainBox .boxReport ul.boxReport1 li span input[type=checkbox]:checked:after {
+                margin-left: 1.9mm;
+                margin-top: -0.6mm;
+                width: 1mm;
+                height: 4mm;
+                border: 1px solid black;
+                border-width: 0 1mm 1mm 0;
+                -webkit-transform: rotate(45deg);
+                -moz-transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                transform: rotate(45deg);
+                content: "";
+                display: inline-block; }
     body .ad-mainContent ul.boxDetailService_1 {
       display: flex;
       flex-direction: column;
@@ -451,6 +495,9 @@ body {
             justify-content: center; }
             body .ad-mainContent ul.boxListService li span button i {
               color: greenyellow; }
+          body .ad-mainContent ul.boxListService li span i {
+            color: #2196F3;
+            font-size: 36px; }
 
 @media only screen and (max-width: 800px) {
   body .ad-mainContent {

@@ -98,12 +98,17 @@ body {
             padding: 5px;
             color: black;
             height: 100px;
+
+            label {
+                //color: red;
+                font-size: 20px;
+            }
         }
 
         .ad-mainBox {
             //border: 1px solid blue;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             //margin: 15px 0 0 0;
 
             ul.ad-menu {
@@ -535,6 +540,72 @@ body {
                 }
             }
 
+            .boxReport {
+                //float: left;
+                //border: 1px solid red;
+                //display: flex;
+                flex-direction: column;
+                flex: 1;
+
+                ul.boxReport1 {
+                    padding: 0;
+                    margin: 0;
+                    list-style: none;
+                    display: flex;
+                    border: 1px solid green;
+                    flex-direction: column;
+
+                    li {
+                        border-bottom: 1px solid #CCC;
+                        display: flex;
+                        flex-direction: row;
+
+                        span.ans {
+                            color: blue;
+                        }
+
+                        span {
+                            //border: 1px solid #CCC;
+                            flex: 1;
+                            text-align: left;
+                            display: flex;
+                            align-items: center;
+
+                            i {
+                                font-size: 30px;
+                            }
+
+                            input[type=checkbox] {
+                                width: 6mm;
+                                -webkit-appearance: none;
+                                -moz-appearance: none;
+                                height: 6mm;
+                                border: 0.1mm solid black;
+                            }
+
+                            input[type=checkbox]:checked {
+                                //background-color: lightblue;
+                            }
+
+                            input[type=checkbox]:checked:after {
+                                margin-left: 1.9mm;
+                                margin-top: -0.6mm;
+                                width: 1mm;
+                                height: 4mm;
+                                border: 1px solid black;
+                                border-width: 0 1mm 1mm 0;
+                                -webkit-transform: rotate(45deg);
+                                -moz-transform: rotate(45deg);
+                                -ms-transform: rotate(45deg);
+                                transform: rotate(45deg);
+                                content: "";
+                                display: inline-block;
+                            }
+                        }
+                    }
+                }
+            }
+
         }
 
         ul.boxDetailService_1 {
@@ -724,6 +795,11 @@ body {
                         i {
                             color: greenyellow;
                         }
+                    }
+
+                    i {
+                        color: #2196F3;
+                        font-size: 36px;
                     }
                 }
 

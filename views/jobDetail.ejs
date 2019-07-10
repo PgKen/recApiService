@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <title><%= title %></title>
+</head>
+
+<body>
+    <div class="ad-mainContent">
+        <div class="imgProfile">
+            <img src='https://taladsrimuang.com/office/people/resize/resize_<%= dataMan[0].images_personal %>'>
+        </div>
+        <div class=" rec-mainTitle">
+            <label for=""><%= title %> </label>
+            <span>
+                <i onclick="linkLogout()" class="material-icons">reply</i>
+            </span>
+        </div>
+        <div class="ad-mainBox">
+            <div class="ad-mainArticle">
+                <div class="ad-titleArticle"><%= subTitle %></div>
+            </div>
+            <div class="boxReport">
+                <ul class="boxReport1">
+                    <li>รายละเอียดของปัญหา</li>
+                    <li><%= dataJob[0].detail_job %></li>
+                    <li>
+                        <span></span>
+                        <span>ผู้แจ้ง&nbsp;&nbsp;<%= dataManSend[0].name %>&nbsp;&nbsp;<%= dataManSend[0].surname %>
+                        </span>
+                        <span>วันที่&nbsp;&nbsp;<%= moment(dataJob[0].date_job).format('DD-MM-YYYY') %>
+                        </span>
+                        <span>เวลา&nbsp;&nbsp;<%= dataJob[0].time_job %>
+                        </span>
+                    </li>
+                    <li>
+                        <span></span>
+                        <span>ผ่าย&nbsp;&nbsp;<%= dataManSend[0].namedp %></span>
+                        <span>เบอร์โทร&nbsp;&nbsp;<%= dataJob[0].tel_job %></span>
+                        <span></span>
+                    </li>
+                    <li>ความเห็นของเจ้าหน้าที่</li>
+                    <li>
+                        <span style="flex: 0.5;">
+                            <% if (dataJob[0].date_service_start == '0000-00-00') { %>
+                            <i class="material-icons">
+                                check_box
+                            </i>
+                            <% }else{ %>
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i>
+                            <% } %>
+                            ดำเนินการซ่อมได้ทันที
+                        </span>
+                        <span>
+                            <% if (dataJob[0].date_service_start != '0000-00-00') { %>
+                            <i class="material-icons">
+                                check_box
+                            </i>
+                            <% }else{ %>
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i>
+                            <% } %>
+                            ยังดำเนินการซ่อมไม่ได้&nbsp;จะดำเนินการซ่อมได้วันที่&nbsp;<%= moment(dataJob[0].date_service_start).format('DD-MM-YYYY') %>
+                        </span>
+                    <li>
+                        <span style="flex:0.5;"></span>
+                        <span>
+                            สาเหตุที่ยังไม่ดำเนินการซ่อม&nbsp;<%= dataJob[0].comment_service %>
+                        </span>
+                    </li>
+                    <li>
+                        <span style="flex:0.5;"></span>
+                        <span>
+                            เจ้าหน้าที่&nbsp;&nbsp;<%= dataMan[0].name %>&nbsp;<%= dataMan[0].surname %>
+                            &nbsp;&nbsp;วันที่&nbsp;&nbsp;<%= moment(dataJob[0].date_service_in).format('DD-MM-YYYY') %>
+                        </span>
+                    </li>
+                    <li>
+                        <span>สาเหตุของการเสีย</span>
+                    </li>
+                    <li>
+                        <% switch (dataJob[0].cause) {
+                        case 1 : %>
+                        <span>
+                            <i class="material-icons">
+                                check_box
+                            </i>&nbsp;<%=dataCause[1].name_cause%>&nbsp;
+
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i>&nbsp;<%=dataCause[2].name_cause%>&nbsp;
+
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i>&nbsp;<%=dataCause[3].name_cause%>&nbsp;
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i>&nbsp;<%=dataCause[4].name_cause%>&nbsp;
+                        </span>
+                        <% break;
+                    case 2 : %>
+                        <span>
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i>&nbsp;<%=dataCause[1].name_cause%>&nbsp;
+
+                            <i class="material-icons">
+                                check_box
+                            </i>&nbsp;<%=dataCause[2].name_cause%>&nbsp;
+
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i>&nbsp;<%=dataCause[3].name_cause%>&nbsp;
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i>&nbsp;<%=dataCause[4].name_cause%>&nbsp;
+                        </span>
+                        <% break;;
+                    case 3 : %>
+                        <span>
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i>&nbsp;<%=dataCause[1].name_cause%>&nbsp;
+
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i>&nbsp;<%=dataCause[2].name_cause%>&nbsp;
+
+                            <i class="material-icons">
+                                check_box
+                            </i>&nbsp;<%=dataCause[3].name_cause%>&nbsp;
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i>&nbsp;<%=dataCause[4].name_cause%>&nbsp;
+                        </span>
+                        <% break;
+                        case 4 : %>
+                        <span>
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i>&nbsp;<%=dataCause[1].name_cause%>&nbsp;
+
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i>&nbsp;<%=dataCause[2].name_cause%>&nbsp;
+
+                            <i class="material-icons">
+                                check_box_outline_blank
+                            </i>&nbsp;<%=dataCause[3].name_cause%>&nbsp;
+                            <i class="material-icons">
+                                check_box
+                            </i>&nbsp;<%=dataCause[4].name_cause%>&nbsp;
+                        </span>
+                        <% break;
+                    } %>
+                    </li>
+                    <li>
+                        <span>
+                            <%=dataJob[0].cause_comment%>
+                        </span>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+</body>
+
+<script>
+    function linkLogout() {
+        //location.href = "/service-chkLogin"
+        window.history.back();
+    }
+</script>
+
+</html>

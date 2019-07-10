@@ -36,7 +36,7 @@
             <li>
                 <span>ลำดับ</span>
                 <span>รายการ</span>
-                <span>สถานะ</span>
+                <span>ใบงาน</span>
                 <span>
                     &nbsp;
                 </span>
@@ -46,7 +46,20 @@
             <li>
                 <span><%= i+1 %></span>
                 <span><%= data[i].detail_job %></span>
-                <span><%= data[i].service %></span>
+                <% if(data[i].service == 0){ %>
+                <span onclick="jobDetail_preview(<%= data[i].jobId %>)">
+                    <i class="material-icons" style="color:orangered;">
+                        pageview
+                    </i>
+                </span>
+                <% }else{ %>
+
+                <span onclick="linkJobDetail(<%= data[i].jobId %>)">
+                    <i class="material-icons">
+                        pageview
+                    </i>
+                </span>
+                <% } %>
                 <% if (data[i].service == 0) { %>
                 <span>
                     <button style="background-color: #FF9800;" onclick="detailService(<%= data[i].jobId %>)">
@@ -55,7 +68,7 @@
                 </span>
                 <% }else if(data[i].service == 1){ %>
                 <span>
-                    <button style="background-color: #8BC34A;" onclick="ansService(<%= data[i].jobId %>)">
+                    <button style="background-color: #2196F3;" onclick="ansService(<%= data[i].jobId %>)">
                         แจ้งผลซ่อม
                     </button>
                 </span>
@@ -77,7 +90,8 @@
 
 <script>
     function linkLogout() {
-        location.href = "/service-chkLogin"
+        //location.href = "/service-chkLogin"
+        location.href = "/logout"
     }
 
     function detailService(id) {
@@ -85,9 +99,19 @@
         location.href = "/serviceDetail/" + id
     }
 
+    function jobDetail_preview(id) {
+        console.log("jobDetail_preview = " + id)
+        location.href = "/jobDetail_preview/" + id
+    }
+
     function ansService(id) {
         console.log("ans" + id)
         location.href = "/serviceAns/" + id
+    }
+
+    function linkJobDetail(id) {
+        console.log("Detail = " + id)
+        location.href = "/jobDetail/" + id
     }
 </script>
 

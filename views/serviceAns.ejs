@@ -16,7 +16,7 @@
         <div class="rec-mainTitle">
             <label for=""><%= title %> </label>
             <span>
-                <i onclick="linkLogout()" class="material-icons">exit_to_app</i>
+                <i onclick="linkLogout()" class="material-icons">reply</i>
             </span>
         </div>
         <div class="ad-mainBox">
@@ -71,6 +71,7 @@
             document.getElementById('inputCaus').style.display = "flex"
         } else {
             document.getElementById('inputCaus').style.display = "none"
+            document.getElementById('kb_cause').innerHTML = ""
         }
     }
 
@@ -137,7 +138,8 @@
 
 
     function linkLogout() {
-        location.href = "/logout"
+        //location.href = "/logout"
+        window.history.back();
     }
 
     function detailService(id) {
