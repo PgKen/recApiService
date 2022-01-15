@@ -21,7 +21,7 @@
     "nodemon": "^1.19.1",
     "onoff": "^4.1.2",
     "rpi-mfrc522": "^1.0.0",
-    "shelljs": "^0.8.3",
+    "shelljs": "^0.8.5",
     "socket.io": "^2.2.0",
     "unirest": "^0.6.0"
   }
